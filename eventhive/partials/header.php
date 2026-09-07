@@ -39,6 +39,7 @@ EventHive</a>
 <a href="index.php" class="<?= trim(nav_active('index.php', $currentPage)) ?>">Home</a>
 <a href="browse.php" class="<?= trim(nav_active('browse.php', $currentPage)) ?>">Browse</a>
 <a href="schedule.php" class="<?= trim(nav_active('schedule.php', $currentPage)) ?>">Schedule</a>
+<a href="announcements.php" class="<?= trim(nav_active('announcements.php', $currentPage)) ?>">Announcements</a>
 <a href="testimonials.php" class="<?= trim(nav_active('testimonials.php', $currentPage)) ?>">Testimonials</a>
 <a href="about.php" class="<?= trim(nav_active('about.php', $currentPage)) ?>">About</a>
 <a href="contact.php" class="<?= trim(nav_active('contact.php', $currentPage)) ?>">Contact</a>

@@ -504,6 +504,22 @@ input:focus, select:focus, textarea:focus {
 .alert-error { background: var(--danger-soft); color: var(--danger); border-left-color: var(--danger); }
 .alert-success { background: var(--success-soft); color: var(--success); border-left-color: var(--success); }
 
+.announcement-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  margin-bottom: 24px;
+}
+.announcement-banner-icon { font-size: 1.2rem; line-height: 1; }
+.announcement-banner-body { flex: 1; }
+.announcement-banner-title { font-weight: 700; margin: 0 0 2px; }
+.announcement-banner-text { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+.announcement-banner-link { font-size: 0.8rem; white-space: nowrap; }
+
 .empty-state {
   text-align: center;
   padding: 52px 24px;

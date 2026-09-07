@@ -32,6 +32,7 @@ EventHive Admin</a>
 <a href="events.php" class="<?= $currentPage === 'events.php' ? 'active' : '' ?>">Events</a>
 <a href="orders.php" class="<?= $currentPage === 'orders.php' ? 'active' : '' ?>">Orders</a>
 <a href="checkin.php" class="<?= $currentPage === 'checkin.php' ? 'active' : '' ?>">Check-In</a>
+<a href="announcements.php" class="<?= in_array($currentPage, ['announcements.php', 'announcement_create.php', 'announcement_edit.php']) ? 'active' : '' ?>">Announcements</a>
 <a href="testimonials.php" class="<?= $currentPage === 'testimonials.php' ? 'active' : '' ?>">Testimonials</a>
 <a href="messages.php" class="<?= $currentPage === 'messages.php' ? 'active' : '' ?>">Messages</a>
 <a href="users.php" class="<?= $currentPage === 'users.php' ? 'active' : '' ?>">Users</a>

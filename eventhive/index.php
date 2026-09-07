@@ -43,6 +43,13 @@ $stmt->close();
 
 $categories = $conn->query('SELECT DISTINCT category FROM events ORDER BY category')->fetch_all(MYSQLI_ASSOC);
 
+$latestAnnouncement = $conn->query('
+    SELECT title, body, created_at
+    FROM announcements
+    ORDER BY created_at DESC
+    LIMIT 1
+')->fetch_assoc();
+
 $myOrders = [];
 if ($uid = current_user_id()) {
     $stmt = $conn->prepare('
@@ -66,6 +73,17 @@ require 'partials/header.php';
 <h1>EventHive</h1>
 <p>Find your campus club or society's next event, pick Regular or VIP, and grab your ticket before it sells out.</p>
 </section>
+
+<?php if ($latestAnnouncement): ?>
+<div class="announcement-banner">
+<span class="announcement-banner-icon">&#128226;</span>
+<div class="announcement-banner-body">
+<p class="announcement-banner-title"><?= htmlspecialchars($latestAnnouncement['title']) ?></p>
+<p class="announcement-banner-text"><?= htmlspecialchars(mb_strimwidth($latestAnnouncement['body'], 0, 160, '...')) ?></p>
+</div>
+<a class="btn btn-secondary btn-small announcement-banner-link" href="announcements.php">View All</a>
+</div>
+<?php endif; ?>
 
 <section>
 <h2>Upcoming Events</h2>

@@ -108,6 +108,11 @@ INSERT INTO ticket_tiers (event_id, tier_name, price, total_tickets, perks) VALU
 ((SELECT id FROM events WHERE event_name = 'The Tempest - Drama Night'), 'Regular', 20.00, 70, NULL),
 ((SELECT id FROM events WHERE event_name = 'The Tempest - Drama Night'), 'VIP', 38.00, 26, 'Best-view seating and a meet-the-cast pass.');
 
+-- Seed announcement so the homepage banner and Announcements page have
+-- something to show out of the box.
+INSERT INTO announcements (title, body, posted_by) VALUES
+('Welcome to EventHive', 'Browse events, pick your tier, and grab your ticket before it sells out. Check back here for updates on event changes and new releases.', (SELECT id FROM users WHERE email = 'admin@example.com'));
+
 -- `orders` is kept as the underlying table name (simplicity per the design
 -- brief), but every user-facing label calls these "My Tickets" /
 -- "reservations" now, never "orders" - see index.php, confirmation.php, etc.
@@ -205,6 +210,18 @@ CREATE TABLE contact_messages (
   subject VARCHAR(150) NOT NULL,
   message TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Admin-posted announcements shown to all users (e.g. "Cultural Night moved to
+-- Hall B", "Ticket sales close Friday"). Ordered newest-first everywhere they
+-- appear; the homepage banner shows only the single most recent one.
+CREATE TABLE announcements (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(150) NOT NULL,
+  body TEXT NOT NULL,
+  posted_by INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (posted_by) REFERENCES users(id)
 );
 
 -- PHP sessions are stored here instead of on local disk, so that any EC2
